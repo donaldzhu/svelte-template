@@ -1,0 +1,78 @@
+[
+  {
+    "name": "Home",
+    "slug": "",
+    "description": "Hello World.",
+    "tags": [
+      "STATIC",
+      "STATE"
+    ]
+  },
+  {
+    "name": "Carousel",
+    "slug": "carousel",
+    "description": "A photo carousel.",
+    "tags": [
+      "USER-INTERACTION",
+      "IMAGE",
+      "CMS"
+    ]
+  },
+  {
+    "name": "Form",
+    "slug": "form",
+    "description": "A simple, user-submitted form.",
+    "tags": [
+      "HTTPS",
+      "FORM",
+      "INPUT"
+    ]
+  },
+  {
+    "name": "Events",
+    "slug": "events",
+    "description": "On-scroll, on-click, and on-hover events.",
+    "tags": [
+      "USER-INTERACTION",
+      "ANIMATION",
+      "STATE"
+    ]
+  },
+  {
+    "name": "p5.js",
+    "slug": "p5",
+    "description": "Updating global and local p5.js sketches.",
+    "tags": [
+      "ANIMATION",
+      "STATE"
+    ]
+  },
+  {
+    "name": "Table",
+    "slug": "table",
+    "description": "A table of data with sorting and filtering.",
+    "tags": [
+      "CMS",
+      "DATA"
+    ]
+  },
+  {
+    "name": "Video",
+    "slug": "video",
+    "description": "A video player.",
+    "tags": [
+      "VIDEO",
+      "CMS"
+    ]
+  },
+  {
+    "name": "Auth",
+    "slug": "auth",
+    "description": "User authentication and authorization.",
+    "tags": [
+      "HTTPS",
+      "AUTH",
+      "CMS"
+    ]
+  }
+]

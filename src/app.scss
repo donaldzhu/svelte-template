@@ -1,149 +1,175 @@
+@use "./lib/styles/_entry.scss" as *;
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-Light-Trial.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-LightItalic-Trial.otf") format("opentype");
   font-weight: 300;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-Regular-Trial.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-RegularItalic-Trial.otf") format("opentype");
   font-weight: normal;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-Medium-Trial.otf") format("opentype");
   font-weight: 500;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-MediumItalic-Trial.otf") format("opentype");
   font-weight: 500;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-Bold-Trial.otf") format("opentype");
   font-weight: bold;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-BoldItalic-Trial.otf") format("opentype");
   font-weight: bold;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-Heavy-Trial.otf") format("opentype");
   font-weight: 800;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-HeavyItalic-Trial.otf") format("opentype");
   font-weight: 800;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-Black-Trial.otf") format("opentype");
   font-weight: 900;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM";
   src: url("/fonts/ROM/ABCROM-BlackItalic-Trial.otf") format("opentype");
   font-weight: 900;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-Light-Trial.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-LightItalic-Trial.otf") format("opentype");
   font-weight: 300;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-Regular-Trial.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-RegularItalic-Trial.otf") format("opentype");
   font-weight: normal;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-Medium-Trial.otf") format("opentype");
   font-weight: 500;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-MediumItalic-Trial.otf") format("opentype");
   font-weight: 500;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-Bold-Trial.otf") format("opentype");
   font-weight: bold;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-BoldItalic-Trial.otf") format("opentype");
   font-weight: bold;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-Heavy-Trial.otf") format("opentype");
   font-weight: 800;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-HeavyItalic-Trial.otf") format("opentype");
   font-weight: 800;
   font-style: italic;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-Black-Trial.otf") format("opentype");
   font-weight: 900;
   font-style: normal;
 }
+
 @font-face {
   font-family: "ABC ROM Mono";
   src: url("/fonts/ROM Mono/ABCROMMono-BlackItalic-Trial.otf") format("opentype");
   font-weight: 900;
   font-style: italic;
 }
+
 :root {
-  --font-size-medium: 1.875rem;
+  --font-size-medium: #{$font-size-medium};
   --font-family-sans: "ABC ROM", "Helvetica", sans-serif;
   --font-family-mono: "ABC ROM Mono", "Courier New", monospace;
 }
@@ -151,10 +177,11 @@
 body {
   font-family: var(--font-family-sans);
   margin: 0;
-}
-body *::selection {
-  background-color: #000;
-  color: #fff;
+
+  *::selection {
+    background-color: #000;
+    color: #fff;
+  }
 }
 
 h1,

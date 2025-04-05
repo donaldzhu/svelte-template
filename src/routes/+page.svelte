@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcomeFallback from '$lib/images/svelte-welcome.png';
+	import Counter from './Counter.svelte'
 </script>
 
 <svelte:head>
@@ -11,49 +9,36 @@
 
 <section>
 	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcomeFallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
+		Hello World
 	</h1>
-
 	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
+		This is Donald’s Svelte Learning Project
 	</h2>
 
 	<Counter />
 </section>
 
-<style>
+<style lang='scss'>
 	section {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		flex: 0.6;
+		height: 100%;
 	}
 
 	h1 {
 		width: 100%;
+		text-align: center;
+		font-size: 10rem;
+		text-transform: uppercase;
+		margin: 0;
 	}
 
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
+	h2 {
+		margin: 0;
+		margin-bottom: 1rem;
 
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+		font-size: var(--font-size-medium);
 	}
 </style>

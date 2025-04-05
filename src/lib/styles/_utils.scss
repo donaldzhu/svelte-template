@@ -1,0 +1,9 @@
+@use 'sass:math';
+
+@function getRemified($size) {
+  @return #{math.div($size, 16)}rem;
+}
+
+@mixin remify($size) {
+  font-size: #{math.div($size, 16)}rem;
+}
