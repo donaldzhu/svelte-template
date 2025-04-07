@@ -6,9 +6,10 @@
 </script>
 
 <li
-  class={["menu-link", isActive && 'menu-link--active']}
-  aria-current={page.url.pathname === href ? 'page' : undefined}>
-  <a href={href}>
+  class={['menu-link', isActive && 'menu-link--active']}
+  aria-current={page.url.pathname === href ? 'page' : undefined}
+>
+  <a {href}>
     <div class="menu-link-container">
       <p class="menu-link-index">{index + 1}</p>
       <div class="menu-link-content">
@@ -31,15 +32,17 @@
   @use '$lib/styles/_entry' as *;
   .menu-link {
     margin: 0;
-		margin-bottom: 1rem;
+    margin-bottom: 1rem;
     padding: 1rem 1rem 1.75rem;
 
     color: #fff;
 
-    border-radius: 0.75rem;
+    border-radius: $corner-radius-l;
     background-color: #000;
 
-    transition: all 0.15s ease-in-out;
+    transition:
+      background-color $timing-short ease-in-out,
+      transform $timing-short ease-in-out;
 
     &:hover {
       transform: rotateX(27.5deg);
@@ -47,19 +50,18 @@
 
     &--active {
       background-color: #d0d0d0;
-
     }
-	}
+  }
 
   a {
     user-select: none;
-		&,
-		&:active,
-		&:visited {
-			color: inherit;
+    &,
+    &:active,
+    &:visited {
+      color: inherit;
       text-decoration: none;
-		}
-	}
+    }
+  }
 
   .menu-link-container {
     display: flex;
@@ -86,7 +88,7 @@
   .menu-link-description {
     margin: 0.2em 0 0.7em;
 
-    font-size: var(--font-size-medium);
+    font-size: $font-size-small;
     line-height: 0.9em;
   }
 

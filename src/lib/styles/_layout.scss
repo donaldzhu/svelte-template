@@ -1,0 +1,12 @@
+@use './colors' as *;
+
+
+$corner-radius-l: 12px;
+$corner-radius-m: 10px;
+$corner-radius-s: 8px;
+$border-medium: 2px;
+
+@mixin gray-border ($radius: $corner-radius-l) {
+  border: $border-medium solid $gray-transparent;
+  border-radius: $radius;
+}

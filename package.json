@@ -15,6 +15,7 @@
 		"@sveltejs/adapter-auto": "^4.0.0",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"p5": "^1.11.3",
 		"sass-embedded": "^1.86.0",
 		"svelte": "^5.25.0",
 		"svelte-check": "^4.0.0",
@@ -26,6 +27,7 @@
 		"@sanity/client": "^6.28.4",
 		"@sanity/image-url": "^1.1.0",
 		"@sanity/types": "^3.81.0",
-		"groq": "^3.81.0"
+		"groq": "^3.81.0",
+		"p5-svelte": "^3.1.2"
 	}
 }

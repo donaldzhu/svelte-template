@@ -36,10 +36,10 @@
 </div>
 
 <style lang="scss">
+  @use '$lib/styles/_entry' as *;
   .counter {
+    @include gray-border;
     display: flex;
-    border: 2px solid rgba(0, 0, 0, 0.25);
-    border-radius: 0.6rem;
     margin: 1.5rem 0;
     padding: 0.5rem;
 
@@ -72,7 +72,7 @@
     position: relative;
 
     span {
-      font-family: var(--font-family-mono);
+      font-family: $font-family-mono;
       position: absolute;
       display: flex;
       width: 100%;

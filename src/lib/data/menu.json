@@ -19,6 +19,15 @@
     ]
   },
   {
+    "name": "p5.js",
+    "slug": "p5",
+    "description": "Updating global and local p5.js sketches.",
+    "tags": [
+      "ANIMATION",
+      "STATE"
+    ]
+  },
+  {
     "name": "Form",
     "slug": "form",
     "description": "A simple, user-submitted form.",
@@ -34,15 +43,6 @@
     "description": "On-scroll, on-click, and on-hover events.",
     "tags": [
       "USER-INTERACTION",
-      "ANIMATION",
-      "STATE"
-    ]
-  },
-  {
-    "name": "p5.js",
-    "slug": "p5",
-    "description": "Updating global and local p5.js sketches.",
-    "tags": [
       "ANIMATION",
       "STATE"
     ]

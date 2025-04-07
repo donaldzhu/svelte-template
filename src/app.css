@@ -142,14 +142,8 @@
   font-weight: 900;
   font-style: italic;
 }
-:root {
-  --font-size-medium: 1.875rem;
-  --font-family-sans: "ABC ROM", "Helvetica", sans-serif;
-  --font-family-mono: "ABC ROM Mono", "Courier New", monospace;
-}
-
 body {
-  font-family: var(--font-family-sans);
+  font-family: "ABC ROM", "Helvetica", sans-serif;
   margin: 0;
 }
 body *::selection {

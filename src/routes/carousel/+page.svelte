@@ -43,6 +43,7 @@
 </div>
 
 <style lang="scss">
+  @use '$lib/styles/_entry' as *;
   .carousel {
     display: flex;
     justify-content: center;
@@ -64,7 +65,7 @@
   img {
     width: 100%;
     height: auto;
-    transition: transform 0.5s ease-in-out;
+    transition: transform $timing-long ease-in-out;
     object-fit: contain;
   }
 
@@ -75,8 +76,7 @@
 
     padding: $padding-vertical $padding-inside $padding-vertical
       $padding-outside;
-    border: 1px solid rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
+    @include gray-border;
 
     background: none;
     cursor: pointer;
