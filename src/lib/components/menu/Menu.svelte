@@ -23,7 +23,7 @@
 <style lang="scss">
   menu {
     width: var(--width-vw);
-    height: calc(100vh - 1rem);
+    height: calc(100vh - 2rem);
     max-width: var(--max-width-rem);
     margin: 0;
     padding: var(--padding-rem) 0 var(--padding-rem) var(--padding-rem);

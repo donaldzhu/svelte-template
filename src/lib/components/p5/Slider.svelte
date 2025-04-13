@@ -1,9 +1,15 @@
 <script>
-  const { label } = $props()
-  let value = $state(50)
-  const min = 0
-  const max = 100
-  const range = max - min
+  import _ from 'lodash'
+
+  let {
+    name,
+    min,
+    max,
+    value = $bindable(),
+    step: _step = undefined,
+  } = $props()
+  let range = $derived(max - min)
+  let step = $derived(_step ?? Math.min(1, range / 100))
 </script>
 
 <div
@@ -13,30 +19,38 @@
   style:--value={value}
 >
   <div class="range-slider__content">
-    <label for="range-slider__{label}">
-      Slider {label}
+    <label for="range-slider__{name}">
+      {name
+        .split(' ')
+        .map(word => _.capitalize(word))
+        .join(' ')}
     </label>
     <div class="range-slider__container">
       <input
-        id="range-slider__{label}"
+        id="range-slider__{name}"
         type="range"
         bind:value
-        min="0"
-        max="100"
+        {min}
+        {max}
+        {step}
       />
       <div class="range-slider__progress" aria-hidden="true"></div>
     </div>
   </div>
   <div class="range-slider__bounds">
     <span
-      class={['range-slider__bound__min', { hidden: value / range <= 0.15 }]}
-      >{min}</span
+      class={['range-slider__bound__min', { hidden: value / range <= 0.08 }]}
     >
-    <span class="range-slider__bound__value">{value}</span>
+      {min}
+    </span>
+    <span class="range-slider__bound__value">
+      {Math.round(value * 10) / 10}
+    </span>
     <span
-      class={['range-slider__bound__max', { hidden: value / range >= 0.85 }]}
-      >{max}</span
+      class={['range-slider__bound__max', { hidden: value / range >= 0.92 }]}
     >
+      {max}
+    </span>
   </div>
 </div>
 
@@ -52,7 +66,7 @@
   $min: var(--min);
   $max: var(--max);
   $completion: calc((var(--value) - #{$min}) / (#{$max} - #{$min}));
-  $slider-width: 77.5%;
+  $slider-width: 70%;
 
   label {
     font-size: $font-size-extra-small;
@@ -61,6 +75,10 @@
   .range-slider {
     width: 100%;
     margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .range-slider__content {
@@ -120,10 +138,7 @@
     outline: none;
     background: none;
 
-    cursor: grab;
-    &:active {
-      cursor: grabbing;
-    }
+    @include grab-cursor;
 
     @mixin thumb {
       appearance: none;
@@ -168,6 +183,8 @@
 
     span {
       transition: opacity $timing-short ease-in-out;
+      user-select: none;
+
       opacity: 1;
       &.hidden {
         opacity: 0;

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import ArrowLeft from '$lib/images/carousel/arrow-left.svelte'
-  import ArrowRight from '$lib/images/carousel/arrow-right.svelte'
+  import ArrowLeft from '$lib/images/svg/carousel/arrow-left.svelte'
+  import ArrowRight from '$lib/images/svg/carousel/arrow-right.svelte'
   import { urlFor } from '$lib/sanity/image'
   import { modulo } from '$lib/utils/general.js'
   import { Spring } from 'svelte/motion'

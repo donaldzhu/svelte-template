@@ -7,3 +7,11 @@
 @mixin remify($size) {
   font-size: #{math.div($size, 16)}rem;
 }
+
+@mixin grab-cursor {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}

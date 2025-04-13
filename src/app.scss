@@ -168,6 +168,9 @@
   font-style: italic;
 }
 
+/* :root {
+  overflow: hidden;
+} */
 
 body {
   font-family: $font-family-sans;
@@ -187,4 +190,12 @@ h5,
 h6 {
   letter-spacing: -0.02em;
   font-weight: 600;
+}
+
+button {
+  border: none;
+  background: none;
+
+  cursor: pointer;
+  outline: none;
 }

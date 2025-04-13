@@ -32,7 +32,9 @@
   @use '$lib/styles/_entry' as *;
   .menu-link {
     margin: 0;
-    margin-bottom: 1rem;
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
     padding: 1rem 1rem 1.75rem;
 
     color: #fff;

@@ -24,7 +24,17 @@
     "description": "Updating global and local p5.js sketches.",
     "tags": [
       "ANIMATION",
-      "STATE"
+      "STATE",
+      "USER-INTERACTION"
+    ]
+  },
+  {
+    "name": "Drag",
+    "slug": "drag",
+    "description": "A draggable component.",
+    "tags": [
+      "USER-INTERACTION",
+      "ANIMATION"
     ]
   },
   {
@@ -38,6 +48,15 @@
     ]
   },
   {
+    "name": "Table",
+    "slug": "table",
+    "description": "A table of data with sorting and filtering.",
+    "tags": [
+      "CMS",
+      "DATA"
+    ]
+  },
+  {
     "name": "Events",
     "slug": "events",
     "description": "On-scroll, on-click, and on-hover events.",
@@ -45,15 +64,6 @@
       "USER-INTERACTION",
       "ANIMATION",
       "STATE"
-    ]
-  },
-  {
-    "name": "Table",
-    "slug": "table",
-    "description": "A table of data with sorting and filtering.",
-    "tags": [
-      "CMS",
-      "DATA"
     ]
   },
   {
@@ -73,6 +83,22 @@
       "HTTPS",
       "AUTH",
       "CMS"
+    ]
+  },
+  {
+    "name": "Text",
+    "slug": "text",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "tags": [
+      "CMS"
+    ]
+  },
+  {
+    "name": "Hooks",
+    "slug": "hooks",
+    "description": "Testing useHooks in Svelte.",
+    "tags": [
+      "STATE"
     ]
   }
 ]

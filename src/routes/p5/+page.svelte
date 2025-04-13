@@ -1,27 +1,43 @@
 <script lang="ts">
-  import { MAIN_PADDING_REM } from '$lib/styles/constants'
-  import { getMenuWidth } from '$lib/styles/layout'
-  import { getRem, vh, vw } from '$lib/utils/styles'
+  import { getLayoutWidths } from '$lib/styles/layout'
   import type { Sketch } from 'p5-svelte'
   import P5 from 'p5-svelte'
   import { onMount } from 'svelte'
-  import Slider from './Slider.svelte'
+  import Slider from '$lib/components/p5/Slider.svelte'
+  import _ from 'lodash'
+  import Sketch1 from '$lib/components/p5/sketches/sketch1.svelte'
+  import Sketch2 from '$lib/components/p5/sketches/sketch2.svelte'
+  import Sketch3 from '$lib/components/p5/sketches/sketch3.svelte'
+  import { slide } from 'svelte/transition'
+  import { goto } from '$app/navigation'
+  import Button from '$lib/components/common/Button.svelte'
+  import AccordionOpen from '$lib/images/svg/accordion-down.svelte'
 
-  let width = $state(100)
-  let height = $state(100)
+  const { data } = $props()
+
+  let menuIsOpen = $state(true)
   let isLoaded = $state(false)
   let hasResized = $state(false)
+  const sketchInstances = [new Sketch1(), new Sketch2(), new Sketch3()]
 
-  const SKECTCHES_TEMP = ['1', '2', '3', '4']
-  let sketchIndex = $state(0)
+  const getQuerySketchIndex = () =>
+    _.clamp(data.sketchIndex, 0, sketchInstances.length - 1)
 
-  const SETTINGS_TEMP = ['1', '2', '3', '4']
+  let sketchIndex = $state(getQuerySketchIndex())
 
-  const getCanvasSize = () => {
-    const canvasWidth = vw() - getMenuWidth() - getRem(MAIN_PADDING_REM) * 2 - 4 // TODO: border width
-    const canvasHeight = vh() - getRem(MAIN_PADDING_REM) * 2 - 4
-    return { width: canvasWidth, height: canvasHeight }
-  }
+  $effect(() => {
+    sketchIndex = getQuerySketchIndex()
+  })
+
+  $effect(() => {
+    goto(`/p5?sketch=${sketchIndex + 1}`, {
+      replaceState: true,
+      keepFocus: true,
+    })
+  })
+
+  const currentSketch = $derived(sketchInstances[sketchIndex])
+  const currentSettings = $derived(currentSketch.settings)
 
   onMount(() => (isLoaded = true))
 
@@ -33,47 +49,78 @@
     p5.draw = () => {
       if (!isLoaded) return
       if (!hasResized) {
-        const { width, height } = getCanvasSize()
-        p5.resizeCanvas(width, height)
+        const { mainWidth, mainHeight } = getLayoutWidths()
+        p5.resizeCanvas(mainWidth, mainHeight)
         hasResized = true
       }
-      p5.ellipse(p5.width / 2, p5.height / 2, width, height)
+      currentSketch.draw(p5)
     }
 
     p5.windowResized = () => {
       if (!isLoaded) return
-      const { width, height } = getCanvasSize()
-      p5.resizeCanvas(width, height)
+      const { mainWidth, mainHeight } = getLayoutWidths()
+      p5.resizeCanvas(mainWidth, mainHeight)
     }
   }
 
-  let value = $state(0)
+  $effect(() => currentSketch.clear())
+
+  const resetSettings = () => {
+    for (let i = 0; i < sketchInstances.length; i++) {
+      const instance = sketchInstances[i]
+      instance.reset()
+    }
+  }
 </script>
 
+<!-- TODO: js timing constant -->
 <div class="p5-container">
   <div class="p5-controls">
-    <h3>p5 CONTROLS</h3>
-    <div class="p5-sketch-select">
-      <h4>Sketch</h4>
-      <div class="p5-sketch-select-buttons">
-        {#each SKECTCHES_TEMP as setting, index}
-          <button
-            class={{ selected: sketchIndex === index }}
-            onclick={() => (sketchIndex = index)}
-          >
-            {setting}
-          </button>
-        {/each}
-      </div>
+    <div
+      tabindex="0"
+      role="button"
+      class="p5-controls-header"
+      onclick={() => (menuIsOpen = !menuIsOpen)}
+    >
+      <h3>p5 CONTROLS</h3>
+      <button style:transform={menuIsOpen ? 'rotate(180deg)' : ''}>
+        <AccordionOpen />
+      </button>
     </div>
-    <div class="p5-sketch-settings-container">
-      <h4>Settings</h4>
-      <div class="p5-sketch-settings">
-        {#each SETTINGS_TEMP as label}
-          <Slider {label} />
-        {/each}
+    {#key menuIsOpen}
+      <div
+        class={['p5-controls-content', { hidden: !menuIsOpen }]}
+        transition:slide={{ duration: 500 }}
+      >
+        <div class="p5-sketch-select">
+          <h4>Sketches</h4>
+          <div class="p5-sketch-select-buttons">
+            {#each sketchInstances as _, index}
+              <Button
+                selected={sketchIndex === index}
+                onclick={() => (sketchIndex = index)}
+              >
+                {index + 1}
+              </Button>
+            {/each}
+          </div>
+        </div>
+        <div class="p5-sketch-settings-container">
+          <div class="p5-sketch-settings">
+            {#each currentSettings as setting}
+              <Slider
+                bind:value={setting.value}
+                {..._.omit(setting, 'value')}
+              />
+            {/each}
+          </div>
+        </div>
+        <div>
+          <Button onclick={() => currentSketch.clear()}>Clear Canvas</Button>
+          <Button onclick={resetSettings}>Reset Settings</Button>
+        </div>
       </div>
-    </div>
+    {/key}
   </div>
   <P5 {sketch} />
 </div>
@@ -84,10 +131,13 @@
 
   .p5-container {
     height: calc(100vh - #{$border-medium} * 2);
-    @include gray-border;
     position: relative;
+    overflow: hidden;
   }
 
+  $header-padding: 1rem;
+  $header-font-size: 1.4rem;
+  $header-line-height: 1;
   .p5-controls {
     width: 21rem;
 
@@ -104,9 +154,19 @@
 
     font-size: 1.25rem;
 
-    > div {
+    .p5-controls-content > div {
       border-top: 1px solid $gray-opaque;
       padding: 1rem;
+    }
+
+    .p5-controls-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      button {
+        transition: transform $timing-long ease-in-out;
+      }
     }
   }
 
@@ -116,7 +176,9 @@
   }
 
   h3 {
-    padding: 1rem;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    cursor: default;
   }
 
   h4 {
@@ -130,30 +192,12 @@
     gap: 0.375rem;
   }
 
-  button {
-    font-family: $font-family-mono;
-    background-color: transparent;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 0.2rem 0.45rem 0.1rem;
-    cursor: pointer;
-
-    transition:
-      background-color $timing-short ease-in-out,
-      color $timing-short ease-in-out;
-
-    &.selected {
-      background-color: black;
-      color: white;
-    }
-  }
-
   .p5-sketch-settings {
     display: flex;
     flex-direction: column;
   }
 
-  label {
-    @include remify(15);
+  .hidden {
+    display: none;
   }
 </style>
