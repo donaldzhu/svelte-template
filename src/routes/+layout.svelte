@@ -1,11 +1,11 @@
 <script lang="ts">
-  import Menu from '../lib/components/menu/Menu.svelte'
   import { setContext } from 'svelte'
   import { writable } from 'svelte/store'
-  import '../app.css'
+  import Menu from '$lib/components/menu/Menu.svelte'
   import { quickArray } from '$lib/utils/general'
-  import type { DragData } from './types'
+  import '../app.css'
   import type { Point } from '$lib/types/util'
+  import type { DragData } from './types'
   let { data, children } = $props()
 
   let dragData = writable({

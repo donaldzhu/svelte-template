@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { modulo } from '$lib/utils/general'
   import { Spring } from 'svelte/motion'
+  import { modulo } from '$lib/utils/general'
 
   const count = new Spring(0)
   const offset = $derived(modulo(count.current, 1))
@@ -9,16 +9,16 @@
 
 <div class="counter">
   <button
-    onclick={() => adjustNumber(-1)}
     aria-label="Decrease the counter by one"
+    onclick={() => adjustNumber(-1)}
   >
     -
   </button>
 
   <div class="counter-viewport">
     <div
+      style:transform="translate(0, {100 * offset}%)"
       class="counter-digits"
-      style="transform: translate(0, {100 * offset}%)"
     >
       <span class="hidden" aria-hidden="true"
         >{Math.floor(count.current + 1)}</span
@@ -28,8 +28,8 @@
   </div>
 
   <button
-    onclick={() => adjustNumber(1)}
     aria-label="Increase the counter by one"
+    onclick={() => adjustNumber(1)}
   >
     +
   </button>

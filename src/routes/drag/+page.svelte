@@ -1,10 +1,10 @@
 <script lang="ts">
   import { draggable } from '@neodrag/svelte'
-  import { getLayoutWidths } from '$lib/styles/layout.js'
   import { getContext, onMount } from 'svelte'
-  import type { DragData } from '../types'
+  import { getLayoutWidths } from '$lib/styles/layout.js'
   import { quickArray } from '$lib/utils/general'
   import type { Point } from '$lib/types/util'
+  import type { DragData } from '../types'
 
   const { dragData, setDragData, setZIndices }: DragData =
     getContext('drag-positions')
@@ -63,8 +63,8 @@
   {#if isLoaded}
     {#each items as item, index}
       <div
-        class="draggable__item"
         style:z-index={$dragData.zIndices.indexOf(index)}
+        class="draggable__item"
         use:draggable={{
           position: initialPositions[index],
           onDragStart: () => bumpZIndex(index),

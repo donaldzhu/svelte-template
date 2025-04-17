@@ -1,9 +1,9 @@
 <script lang="ts">
+  import { Spring } from 'svelte/motion'
   import ArrowLeft from '$lib/images/svg/carousel/arrow-left.svelte'
   import ArrowRight from '$lib/images/svg/carousel/arrow-right.svelte'
   import { urlFor } from '$lib/sanity/image'
   import { modulo } from '$lib/utils/general.js'
-  import { Spring } from 'svelte/motion'
 
   const IMG_WIDTH = 600
 
@@ -24,17 +24,17 @@
   <title>Carousel</title>
 </svelte:head>
 
-<div class="carousel" style="--img-width: {IMG_WIDTH}px">
+<div style:--img-width="{IMG_WIDTH}px" class="carousel">
   <button aria-label="Previous" onclick={() => index.target--}>
     <ArrowLeft />
   </button>
   <div class="carousel-viewport">
     <div
+      style:transform="translate(-{100 * offset}%, 0)"
       class="carousel-container"
-      style="transform: translate(-{100 * offset}%, 0)"
     >
-      <img src={currentImg} alt="" aria-hidden="true" />
-      <img src={nextImg} alt="" />
+      <img alt="" aria-hidden="true" src={currentImg} />
+      <img alt="" src={nextImg} />
     </div>
   </div>
   <button aria-label="Next" onclick={() => index.target++}>

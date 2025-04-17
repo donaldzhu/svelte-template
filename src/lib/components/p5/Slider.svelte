@@ -13,10 +13,10 @@
 </script>
 
 <div
-  class="range-slider"
   style:--min={min}
   style:--max={max}
   style:--value={value}
+  class="range-slider"
 >
   <div class="range-slider__content">
     <label for="range-slider__{name}">
@@ -28,11 +28,11 @@
     <div class="range-slider__container">
       <input
         id="range-slider__{name}"
+        {max}
+        {min}
+        {step}
         type="range"
         bind:value
-        {min}
-        {max}
-        {step}
       />
       <div class="range-slider__progress" aria-hidden="true"></div>
     </div>

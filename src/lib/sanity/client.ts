@@ -1,13 +1,13 @@
+import { createClient } from '@sanity/client'
 import { apiVersion, dataset, projectId, studioUrl } from '$lib/sanity/api'
 
-import { createClient } from '@sanity/client'
 
 export const client = createClient({
-	projectId,
-	dataset,
-	apiVersion,
-	useCdn: true,
-	stega: {
-		studioUrl
-	}
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: true,
+  stega: {
+    studioUrl
+  }
 })

@@ -12,8 +12,8 @@
   <a {href}>
     <div class="menu-link-container">
       <p class="menu-link-index">{index + 1}</p>
-      <div class="menu-link-content">
-        <h4 class="menu-link-name">{name}</h4>
+      <div>
+        <h4>{name}</h4>
         <p class="menu-link-description">{description}</p>
         <ul class="menu-link-tags">
           {#each tags as tag}

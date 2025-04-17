@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { getLayoutWidths } from '$lib/styles/layout'
-  import type { Sketch } from 'p5-svelte'
+  import _ from 'lodash'
   import P5 from 'p5-svelte'
   import { onMount } from 'svelte'
-  import Slider from '$lib/components/p5/Slider.svelte'
-  import _ from 'lodash'
-  import Sketch1 from '$lib/components/p5/sketches/sketch1.svelte'
-  import Sketch2 from '$lib/components/p5/sketches/sketch2.svelte'
-  import Sketch3 from '$lib/components/p5/sketches/sketch3.svelte'
   import { slide } from 'svelte/transition'
   import { goto } from '$app/navigation'
   import Button from '$lib/components/common/Button.svelte'
+  import Sketch1 from '$lib/components/p5/sketches/sketch1.svelte'
+  import Sketch2 from '$lib/components/p5/sketches/sketch2.svelte'
+  import Sketch3 from '$lib/components/p5/sketches/sketch3.svelte'
+  import Slider from '$lib/components/p5/Slider.svelte'
   import AccordionOpen from '$lib/images/svg/accordion-down.svelte'
+  import { getLayoutWidths } from '$lib/styles/layout'
+  import type { Sketch } from 'p5-svelte'
 
   const { data } = $props()
 
@@ -77,10 +77,10 @@
 <div class="p5-container">
   <div class="p5-controls">
     <div
-      tabindex="0"
-      role="button"
       class="p5-controls-header"
       onclick={() => (menuIsOpen = !menuIsOpen)}
+      role="button"
+      tabindex="0"
     >
       <h3>p5 CONTROLS</h3>
       <button style:transform={menuIsOpen ? 'rotate(180deg)' : ''}>
@@ -92,20 +92,20 @@
         class={['p5-controls-content', { hidden: !menuIsOpen }]}
         transition:slide={{ duration: 500 }}
       >
-        <div class="p5-sketch-select">
+        <div>
           <h4>Sketches</h4>
           <div class="p5-sketch-select-buttons">
             {#each sketchInstances as _, index}
               <Button
-                selected={sketchIndex === index}
                 onclick={() => (sketchIndex = index)}
+                selected={sketchIndex === index}
               >
                 {index + 1}
               </Button>
             {/each}
           </div>
         </div>
-        <div class="p5-sketch-settings-container">
+        <div>
           <div class="p5-sketch-settings">
             {#each currentSettings as setting}
               <Slider

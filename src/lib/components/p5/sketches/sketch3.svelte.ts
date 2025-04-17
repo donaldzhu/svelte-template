@@ -1,7 +1,7 @@
 import _ from 'lodash'
+import Sketch from '../sketch'
 import type { Vector } from 'p5'
 import type { p5 } from 'p5-svelte'
-import Sketch from '../sketch'
 
 const defaultSettings = [
   {
@@ -51,7 +51,7 @@ class Sketch3 extends Sketch {
     super.draw(p5)
 
     p5.push()
-    for (var i = 0; i < this.balls.length; i++) {
+    for (let i = 0; i < this.balls.length; i++) {
       this.balls[i].draw()
       this.balls[i].update()
     }

@@ -1,6 +1,6 @@
+import { MAIN_PADDING_REM, MENU_MAX_WIDTH_REM, MENU_WIDTH_VW } from './constants'
 import { getRem, vh, vw } from '$lib/utils/styles'
 
-import { MAIN_PADDING_REM, MENU_MAX_WIDTH_REM, MENU_WIDTH_VW } from './constants'
 
 export const getLayoutWidths = () => {
   const maxMenuWidth = getRem(MENU_MAX_WIDTH_REM)

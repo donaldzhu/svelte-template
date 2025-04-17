@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import type { p5 } from 'p5-svelte'
 import Sketch from '../sketch'
+import type { p5 } from 'p5-svelte'
 
 const defaultSettings = [
   {
